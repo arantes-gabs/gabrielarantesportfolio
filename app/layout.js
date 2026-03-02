@@ -19,7 +19,7 @@ export const metadata = {
   description: "Desenvolvedor Front-end",
   openGraph: {
     title: "Gabriel Arantes",
-    description: "Desenvolvedor front end",
+    description: "Desenvolvedor Front-end",
     type: "website",
     locale: "pt_BR",
     images: [
