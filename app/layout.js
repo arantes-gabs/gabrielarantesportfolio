@@ -45,9 +45,9 @@ export const metadata = {
     images: [ogImage],
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [{ url: "/icon.png?v=3", type: "image/png", sizes: "32x32" }],
+    shortcut: ["/icon.png?v=3"],
+    apple: [{ url: "/apple-icon.png?v=3", sizes: "180x180" }],
   },
 };
 
