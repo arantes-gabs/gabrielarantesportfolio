@@ -9,7 +9,7 @@ import Hero from "./Hero";
 gsap.registerPlugin(ScrollTrigger);
 
 const introText =
-  "Sou Gabriel Arantes, desenvolvedor front-end que transforma ideias em experi\u00eancias digitais claras, fluidas e memor\u00e1veis.";
+  "Desenvolvedor front-end focado em performance, detalhe e experiência de uso. Muito prazer!";
 
 const stackLogos = [
   { src: "/react.png", alt: "React", position: "left-[3%] top-[14%] w-16 md:left-[7%] md:top-[16%] md:w-24" },
@@ -234,13 +234,13 @@ export default function IntroOverlay({ onReadingScrollStateChange }) {
         </div>
 
         <div className="pointer-events-none absolute inset-0 z-40 flex items-center justify-center px-6">
-          <div className="relative max-w-5xl opacity-0" ref={textWrapRef}>
-            <div className="pointer-events-none absolute inset-x-0 -top-2 z-0 hidden justify-center lg:flex">
-              <div className="-translate-y-[106%]">
+          <div className="relative max-w-5xl translate-y-8 opacity-0 md:translate-y-10 lg:translate-y-0" ref={textWrapRef}>
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-0 flex justify-center lg:-top-2">
+              <div className="-translate-y-[110%] md:-translate-y-[112%] lg:-translate-y-[106%]">
                 <div ref={portraitReadRef}>
                   <Image
                     alt="Gabriel Arantes"
-                    className="h-auto w-[220px] xl:w-[270px] drop-shadow-[0_18px_30px_rgba(0,0,0,0.58)]"
+                    className="h-auto w-[155px] md:w-[185px] lg:w-[220px] xl:w-[270px] drop-shadow-[0_18px_30px_rgba(0,0,0,0.58)]"
                     height={700}
                     src="/eu4.png"
                     width={520}
@@ -248,7 +248,7 @@ export default function IntroOverlay({ onReadingScrollStateChange }) {
                 </div>
               </div>
             </div>
-            <div className="absolute inset-x-[-4%] -inset-y-8 z-10 rounded-[42px] border border-[#2A2A2A] bg-[#050505]/62 shadow-[0_0_90px_rgba(0,0,0,0.65)] backdrop-blur-none md:backdrop-blur-[1.5px]" />
+            <div className="absolute inset-x-[-4%] -inset-y-6 z-10 rounded-[42px] border border-[#2A2A2A] bg-[#050505]/62 shadow-[0_0_90px_rgba(0,0,0,0.65)] backdrop-blur-none md:-inset-y-8 md:backdrop-blur-[1.5px]" />
             <p
               ref={textRef}
               className="relative z-20 text-center text-2xl font-semibold leading-[1.22] tracking-tight whitespace-normal break-words [text-shadow:0_0_30px_rgba(255,106,0,0.22)] md:text-5xl"

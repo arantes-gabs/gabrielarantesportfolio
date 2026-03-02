@@ -11,9 +11,37 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata = {
-  title: "Gabriel Arantes | Frontend Engineer",
-  description: "Portifolio cinematografico com narrativa guiada por scroll.",
+  metadataBase: new URL(siteUrl),
+  title: "Gabriel Arantes",
+  description: "Desenvolvedor Front-end",
+  openGraph: {
+    title: "Gabriel Arantes",
+    description: "Desenvolvedor front end",
+    type: "website",
+    locale: "pt_BR",
+    images: [
+      {
+        url: "/eu-cropped.png",
+        width: 1200,
+        height: 630,
+        alt: "Gabriel Arantes",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gabriel Arantes",
+    description: "Desenvolvedor Front-end",
+    images: ["/eu-cropped.png"],
+  },
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
