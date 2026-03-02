@@ -269,13 +269,16 @@ export default function IntroOverlay({ onReadingScrollStateChange }) {
         </div>
 
         <div className="pointer-events-none absolute inset-0 z-40 flex items-center justify-center px-6">
-          <div className="relative max-w-5xl translate-y-8 opacity-0 md:translate-y-10 lg:translate-y-0" ref={textWrapRef}>
+          <div
+            className="intro-read-text-wrap relative max-w-5xl translate-y-20 opacity-0 md:translate-y-24 lg:translate-y-28"
+            ref={textWrapRef}
+          >
             <div className="pointer-events-none absolute inset-x-0 top-0 z-0 flex justify-center lg:-top-2">
-              <div className="-translate-y-[110%] md:-translate-y-[112%] lg:-translate-y-[106%]">
+              <div className="intro-read-portrait-anchor -translate-y-[110%] md:-translate-y-[111%] lg:-translate-y-[106%]">
                 <div ref={portraitReadRef}>
                   <Image
                     alt="Gabriel Arantes"
-                    className="h-auto w-[155px] md:w-[185px] lg:w-[220px] xl:w-[270px] drop-shadow-[0_18px_30px_rgba(0,0,0,0.58)]"
+                    className="intro-read-portrait-image h-auto w-[155px] md:w-[182px] lg:w-[205px] xl:w-[228px] 2xl:w-[246px] drop-shadow-[0_18px_30px_rgba(0,0,0,0.58)]"
                     height={700}
                     src="/eu4.png"
                     width={520}
