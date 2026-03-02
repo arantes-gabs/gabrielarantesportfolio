@@ -240,7 +240,7 @@ export default function ResumePage() {
               <p className="text-xs uppercase tracking-[0.36em] text-[#A3A3A3]">Idiomas</p>
               <div className="mt-5 space-y-2 text-[#D4D4D4]">
                 <p>Português - Nativo</p>
-                <p>Inglês - Profissional</p>
+                <p>Inglês - Avançado</p>
               </div>
             </article>
           </aside>

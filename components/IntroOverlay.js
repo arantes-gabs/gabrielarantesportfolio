@@ -72,6 +72,41 @@ export default function IntroOverlay({ onReadingScrollStateChange }) {
         filter: isMobile ? "none" : "blur(12px)",
       });
 
+      const dimLetterState = {
+        color: "#4A4A4A",
+        opacity: 0.24,
+        textShadow: "0 0 0 rgba(0,0,0,0)",
+      };
+      const litLetterState = {
+        color: "#FFFFFF",
+        opacity: 1,
+        textShadow: "0 0 18px rgba(255,106,0,0.25)",
+      };
+      const revealProgress = { value: 0 };
+      let revealedCount = 0;
+
+      const paintRange = (from, to, state) => {
+        for (let index = from; index < to; index += 1) {
+          gsap.set(letters[index], state);
+        }
+      };
+
+      const syncLettersByProgress = (progressValue) => {
+        const nextCount = Math.max(0, Math.min(letters.length, Math.floor(progressValue * (letters.length + 1))));
+        if (nextCount === revealedCount) return;
+
+        if (nextCount > revealedCount) {
+          paintRange(revealedCount, nextCount, litLetterState);
+        } else {
+          paintRange(nextCount, revealedCount, dimLetterState);
+        }
+
+        revealedCount = nextCount;
+      };
+
+      gsap.set(letters, dimLetterState);
+      syncLettersByProgress(0);
+
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: sceneRef.current,
@@ -170,14 +205,14 @@ export default function IntroOverlay({ onReadingScrollStateChange }) {
           "<0.08"
         )
         .to(
-          letters,
+          revealProgress,
           {
-            color: "#FFFFFF",
-            opacity: 1,
-            textShadow: "0 0 20px rgba(255,106,0,0.22)",
-            duration: 1.2,
-            stagger: 0.016,
+            value: 1,
+            duration: 1.3,
             ease: "none",
+            onUpdate: () => {
+              syncLettersByProgress(revealProgress.value);
+            },
           },
           ">"
         )
