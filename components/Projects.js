@@ -4,24 +4,16 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useAppTranslation } from "@/lib/i18n/useAppTranslation";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
-  {
-    title: "timeslot.games",
-    summary:
-      "TimeSlot é um jogo de linha do tempo onde o jogador precisa posicionar eventos históricos no ano correto. A experiência mistura raciocínio rápido, conhecimento geral e partidas dinâmicas, com suporte a categorias variadas e geração inteligente de novos eventos via IA.",
-    detail:
-      "O projeto evoluiu de um estudo técnico para uma plataforma estruturada, com lógica de deduplicação histórica, expansão automática de banco de dados e arquitetura preparada para multiplayer em tempo real.",
-    stack: "React | OpenAI API | Tailwind | N8N | Zustend | Vite",
-    href: "https://timeslot.games",
-    label: "Projeto em destaque",
-  },
-];
-
 export default function Projects() {
+  const { t } = useAppTranslation();
   const sectionRef = useRef(null);
+  const translatedItems = t("projects.items", { returnObjects: true });
+  const projects = Array.isArray(translatedItems) ? translatedItems : [];
+  const cursorLabel = t("projects.cursorLabel");
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -50,9 +42,9 @@ export default function Projects() {
       className="relative z-10 bg-[#0D0D0D] px-6 py-24 md:px-14 md:py-32"
     >
       <div className="mx-auto max-w-6xl">
-        <p className="text-xs uppercase tracking-[0.4em] text-[#A3A3A3]">Projetos</p>
+        <p className="text-xs uppercase tracking-[0.4em] text-[#A3A3A3]">{t("projects.sectionLabel")}</p>
         <h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-[#F5F5F5] md:text-6xl">
-          Meu case principal hoje: um produto real em produção.
+          {t("projects.title")}
         </h2>
 
         <div className="mt-16">
@@ -60,9 +52,9 @@ export default function Projects() {
             <a
               className="project-card group relative block overflow-hidden rounded-3xl border border-[#262626] bg-[#1C1C1C] p-8 transition-colors duration-300 hover:border-[#FF6A00]/85 hover:bg-[#202020] md:p-12"
               data-cursor-target
-              data-cursor-label="Ver projeto"
+              data-cursor-label={cursorLabel}
               href={project.href}
-              key={project.title}
+              key={`${project.title}-${project.href}`}
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -74,7 +66,7 @@ export default function Projects() {
                   </div>
                   <div className="rounded-xl border border-[#2A2A2A] bg-[#141414] p-2 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
                     <Image
-                      alt="Logo TimeSlot"
+                      alt="TimeSlot logo"
                       className="h-8 w-auto md:h-10"
                       height={40}
                       src="/logo-timeslot.png"
@@ -87,7 +79,7 @@ export default function Projects() {
                 <p className="mt-4 max-w-3xl text-base text-[#A3A3A3] md:text-lg">{project.detail}</p>
                 <p className="mt-8 text-xs uppercase tracking-[0.32em] text-[#A3A3A3]">{project.stack}</p>
                 <p className="mt-12 text-xs uppercase tracking-[0.28em] text-[#FF6A00] transition-colors duration-300 group-hover:text-[#FF8A3D]">
-                  Clique para abrir
+                  {t("projects.openProject")}
                 </p>
               </div>
             </a>

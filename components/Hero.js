@@ -3,14 +3,18 @@
 import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { useAppTranslation } from "@/lib/i18n/useAppTranslation";
 
-const whatsappHref =
-  "https://wa.me/5561999945993?text=Oi%20Gabriel!%20Vim%20pelo%20seu%20portfolio%20e%20quero%20falar%20sobre%20um%20projeto.";
 const linkedinHref = "https://www.linkedin.com/in/gabriel-bensuaski/";
 const githubHref = "https://github.com/arantes-gabs";
 
 export default function Hero() {
+  const { t } = useAppTranslation();
   const heroRef = useRef(null);
+  const whatsappHref = `https://wa.me/5561999945993?text=${encodeURIComponent(
+    t("links.whatsappPortfolioMessage")
+  )}`;
+  const resumeHref = t("routes.resume");
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -42,13 +46,13 @@ export default function Hero() {
       </div>
       <div className="hero-content relative z-10 px-6 text-center">
         <p className="hero-fade-item mb-5 text-xs font-semibold uppercase tracking-[0.55em] text-[#A3A3A3]">
-          Desenvolvedor front-end
+          {t("hero.eyebrow")}
         </p>
         <h1 className="hero-fade-item text-4xl font-semibold tracking-tight text-[#F5F5F5] md:text-7xl">
           Gabriel Arantes
         </h1>
         <p className="hero-fade-item mt-4 text-sm text-[#A3A3A3] md:text-base">
-          Construindo interfaces com narrativa visual, performance e foco em resultado.
+          {t("hero.description")}
         </p>
 
         <div className="hero-fade-item mt-9 flex flex-wrap items-center justify-center gap-3">
@@ -58,19 +62,19 @@ export default function Hero() {
             rel="noreferrer noopener"
             target="_blank"
           >
-            Entrar em contato
+            {t("hero.contactButton")}
           </a>
           <Link
             className="inline-flex items-center rounded-full border border-[#262626] bg-[#1C1C1C] px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#F5F5F5] transition-transform duration-300 hover:-translate-y-0.5 hover:border-[#FF6A00]/70"
-            href="/curriculo"
+            href={resumeHref}
           >
-            Ver currículo
+            {t("hero.resumeButton")}
           </Link>
           <a
             className="inline-flex items-center rounded-full border border-[#FF6A00]/60 bg-[#FF6A00]/14 px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#FF8A3D] transition-transform duration-300 hover:-translate-y-0.5 hover:border-[#FF8A3D]"
             href="#projetos"
           >
-            Ver projetos
+            {t("hero.projectsButton")}
           </a>
         </div>
       </div>

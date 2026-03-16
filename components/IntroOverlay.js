@@ -5,11 +5,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Hero from "./Hero";
+import { useAppTranslation } from "@/lib/i18n/useAppTranslation";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const introText =
-  "Desenvolvedor front-end focado em performance, detalhe e experiência de uso. Muito prazer!";
 
 const stackLogos = [
   { src: "/react.png", alt: "React", position: "left-[3%] top-[14%] w-16 md:left-[7%] md:top-[16%] md:w-24" },
@@ -24,13 +22,15 @@ const stackLogos = [
 ];
 
 export default function IntroOverlay({ onReadingScrollStateChange }) {
+  const { t } = useAppTranslation();
   const sceneRef = useRef(null);
   const pinRef = useRef(null);
   const overlayRef = useRef(null);
   const portraitReadRef = useRef(null);
   const textWrapRef = useRef(null);
   const textRef = useRef(null);
-  const characters = useMemo(() => introText.split(""), []);
+  const introText = t("intro.text");
+  const characters = useMemo(() => introText.split(""), [introText]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -242,7 +242,7 @@ export default function IntroOverlay({ onReadingScrollStateChange }) {
       onReadingScrollStateChange?.(false);
       ctx.revert();
     };
-  }, [onReadingScrollStateChange]);
+  }, [introText, onReadingScrollStateChange]);
 
   return (
     <section ref={sceneRef} className="relative">
@@ -303,3 +303,4 @@ export default function IntroOverlay({ onReadingScrollStateChange }) {
     </section>
   );
 }
+

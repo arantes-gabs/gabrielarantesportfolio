@@ -8,14 +8,14 @@ const siteUrl =
 const ogImage = `${siteUrl}/eu-cropped.png?v=2`;
 
 export const metadata = {
-  title: "Curriculo | Gabriel Arantes",
-  description: "Desenvolvedor Front-end",
+  title: "Resume | Gabriel Arantes",
+  description: "Front-end Developer",
   openGraph: {
-    title: "Curriculo | Gabriel Arantes",
-    description: "Desenvolvedor Front-end",
+    title: "Resume | Gabriel Arantes",
+    description: "Front-end Developer",
     type: "website",
-    locale: "pt_BR",
-    url: `${siteUrl}/curriculo`,
+    locale: "en_US",
+    url: `${siteUrl}/resume`,
     siteName: "Gabriel Arantes",
     images: [
       {
@@ -28,12 +28,12 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Curriculo | Gabriel Arantes",
-    description: "Desenvolvedor Front-end",
+    title: "Resume | Gabriel Arantes",
+    description: "Front-end Developer",
     images: [ogImage],
   },
 };
 
-export default function Curriculo() {
+export default function Resume() {
   return <ResumePage />;
 }

@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useAppTranslation } from "@/lib/i18n/useAppTranslation";
 
 export default function CustomCursor() {
+  const { t } = useAppTranslation();
   const cursorRef = useRef(null);
   const labelRef = useRef(null);
   const [isFinePointer, setIsFinePointer] = useState(false);
-  const defaultLabel = "Ver projeto";
+  const defaultLabel = t("projects.cursorLabel");
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(pointer: fine)");
@@ -101,7 +103,7 @@ export default function CustomCursor() {
       cleanupListeners();
       ctx.revert();
     };
-  }, [isFinePointer]);
+  }, [defaultLabel, isFinePointer]);
 
   if (!isFinePointer) {
     return null;
